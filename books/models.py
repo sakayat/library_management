@@ -11,3 +11,6 @@ class BooksModel(models.Model):
     category = models.ForeignKey(
         CategoryModel, on_delete=models.CASCADE, related_name="books"
     )
+    
+    def __str__(self) -> str:
+        return self.title

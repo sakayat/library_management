@@ -11,3 +11,7 @@ class ReviewModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     createdAt = models.DateTimeField(auto_now_add=True)
+    
+    
+    def __str__(self) -> str:
+        return self.content
