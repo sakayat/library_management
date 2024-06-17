@@ -32,3 +32,4 @@ class UserRegistrationForm(UserCreationForm):
                     "class": "block w-full px-3.5 py-2 text-gray-900 outline-none border border-black"
                 }
             )
+

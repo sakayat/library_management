@@ -1,20 +1,47 @@
 <nav class="bg-gray-800">
-    <div class="mx-auto container px-4">
-      <div class="relative flex h-20 items-center justify-between">
-        <div class="flex flex-1 items-center justify-center ">
-          <div class="sm:block w-full">
-            <div class="flex items-center justify-center flex-wrap md:justify-between">
-              <a href="/" class="px-3 py-2 text-sm font-medium text-white">PICKABOOK</a>
+  <div class="mx-auto container px-4">
+    <div class="relative flex h-20 items-center justify-between">
+      <div class="flex flex-1 items-center justify-center">
+        <div class="sm:block w-full">
+          <div
+            class="flex items-center justify-center flex-wrap md:justify-between"
+          >
+            <a href="/" class="px-3 py-2 text-sm font-medium text-white"
+              >PICKABOOK</a
+            >
             <div class="flex space-x-4">
-              <a href="#" class="rounded-md hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium text-gray-300">Dashboard</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
-            </div>
+              {% if user.is_authenticated %}
+              <a
+                href="#"
+                class="rounded-md hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium text-gray-300"
+                >Deposit</a
+              >
+              <a
+                href="#"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >Profile</a
+              >
+              <a
+                href="#"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >Logout</a
+              >
+              {% else %}
+              <a
+                href="{% url 'register' %}"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >SignUp</a
+              >
+              <a
+                href="{% url 'login' %}"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >Login</a
+              >
+              {% endif %}
             </div>
           </div>
         </div>
       </div>
     </div>
-  </nav>
-  
+  </div>
+</nav>

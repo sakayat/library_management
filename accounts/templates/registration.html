@@ -6,9 +6,12 @@
         Create a new account
       </h2>
     </div>
-    {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-    <p class="py-3 border rounded-2">{{error}}</p>
-    {% endfor %} {% endif %}
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+      {% for error in form.non_field_errors %}
+      <span>{{ error }}</span>
+      {% endfor %}
+    </div>
     <form
       method="post"
       class="max-w-3xl mx-auto flex flex-col gap-5 py-3"
@@ -18,7 +21,6 @@
       <div class="form-group space-y-3">
         <label
           class="block text-md font-medium leading-6 text-gray-900"
-          for="id_username"
           >{{form.username.label}}</label
         >
         <div>{{form.username}}</div>
@@ -30,7 +32,6 @@
         <div class="space-y-3 w-full">
           <label
           class="block text-md font-medium leading-6 text-gray-900"
-          for="id_username"
           >{{form.first_name.label}}</label
         >
         <div>{{form.first_name}}</div>
@@ -41,7 +42,6 @@
         <div class="space-y-3 w-full">
           <label
           class="block text-md font-medium leading-6 text-gray-900"
-          for="id_username"
           >{{form.last_name.label}}</label
         >
         <div>{{form.last_name}}</div>
@@ -53,7 +53,6 @@
       <div class="form-group space-y-3">
         <label
           class="block text-md font-medium leading-6 text-gray-900"
-          for="id_username"
           >{{form.email.label}}</label
         >
         <div>{{form.email}}</div>
@@ -64,7 +63,6 @@
       <div class="form-group space-y-3">
         <label
           class="block text-md font-medium leading-6 text-gray-900"
-          for="id_username"
           >{{form.password1.label}}</label
         >
         <div>{{form.password1}}</div>
@@ -75,7 +73,6 @@
       <div class="form-group space-y-3">
         <label
           class="block text-md font-medium leading-6 text-gray-900"
-          for="id_username"
           >{{form.password2.label}}</label
         >
         <div>{{form.password2}}</div>
