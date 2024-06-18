@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<div class="max-w-3xl mx-auto">
+  <h1>Deposit</h1>
+  <form action="" method="post" class="flex flex-col gap-3" novalidate>
+    {% csrf_token %}
+    <div class="form-group flex flex-col gap-3 shadow-lg p-3">
+      <label for="amount" class="uppercase font-bold"
+        >{{form.amount.label}}</label
+      >
+      {{form.amount}}
+    </div>
+    {% if form.amount.errors %} {% for error in form.amount.errors %}
+    <p class="text-danger">{{error}}</p>
+    {% endfor %} {% endif %}
+    <button class="btn btn-dark py-2">Submit</button>
+  </form>
+</div>
+{% endblock content %}
