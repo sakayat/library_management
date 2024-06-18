@@ -1,4 +1,3 @@
-from typing import Any
 from django import forms
 from .models import TransactionsModel
 
@@ -20,7 +19,7 @@ class TransactionForm(forms.ModelForm):
                 }
             )
 
-    def save(self, commit: True):
+    def save(self, commit=True):
         self.instance.account = self.account
         self.instance.balance_after_purchase = self.account.balance
         return super().save(commit)

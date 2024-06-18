@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from .models import UserBalanceAccount
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -19,8 +20,11 @@ class UserRegistrationForm(UserCreationForm):
             "password2",
         ]
 
-    def save(self):
-        user = super().save()
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit == True:
+            user.save()
+            UserBalanceAccount.objects.create(user=user, account_number=19245 + user.id)
         return user
 
     def __init__(self, *args, **kwargs):
@@ -32,4 +36,3 @@ class UserRegistrationForm(UserCreationForm):
                     "class": "block w-full px-3.5 py-2 text-gray-900 outline-none border border-black"
                 }
             )
-

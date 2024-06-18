@@ -1,12 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import UserBalanceAccount
 from .constants import transactions_type
 
 
 # Create your models here.
 class TransactionsModel(models.Model):
     account = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="transactions"
+        UserBalanceAccount, on_delete=models.CASCADE, related_name="transactions"
     )
     amount = models.DecimalField(decimal_places=2, max_digits=12, default=0.0)
     balance_after_purchase = models.DecimalField(
@@ -18,4 +18,4 @@ class TransactionsModel(models.Model):
     
     
     def __str__(self):
-        return self.account
+        return str(self.account)

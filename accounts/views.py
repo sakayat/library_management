@@ -9,7 +9,7 @@ from django.contrib.auth import login, logout
 class UserRegistrationView(FormView):
     form_class = UserRegistrationForm
     template_name = "registration.html"
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("home")
     
     def form_valid(self, form):
         user = form.save()
