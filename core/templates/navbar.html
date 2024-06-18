@@ -9,10 +9,13 @@
             <a href="/" class="px-3 py-2 text-sm font-medium text-white"
               >PICKABOOK</a
             >
-            <div class="flex space-x-4">
+            <div class="flex items-center gap-4">
               {% if user.is_authenticated %}
+              <p
+                href="#" class="py-2 text-sm font-medium text-gray-300"
+                ><span class="text-gray-300">Balance:</span>({{user.account.balance}})</p>
               <a
-                href="#"
+                href="{% url 'deposit' %}"
                 class="rounded-md hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium text-gray-300"
                 >Deposit</a
               >
