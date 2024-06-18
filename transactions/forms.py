@@ -24,3 +24,11 @@ class TransactionForm(forms.ModelForm):
         self.instance.account = self.account
         self.instance.balance_after_purchase = self.account.balance
         return super().save(commit)
+
+class DepositFrom(TransactionForm):
+    def clean_amount(self):
+        min_deposit_amount = 100
+        amount = self.cleaned_data.get("amount")
+        if amount < min_deposit_amount:
+            raise forms.ValidationError(f"You need at least {min_deposit_amount} $")
+        return amount
