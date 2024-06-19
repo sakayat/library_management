@@ -5,6 +5,6 @@
     <h1>{{ book.title }}</h1>
     <p>{{ book.description }}</p>
     <p>Price: {{ book.borrowing_price }}</p>
-    <a href="" class="py-3 px-6 bg-black text-white">Borrow Book</a>
+    <a href="{% url 'borrow_book' book.id %}" class="py-3 px-6 bg-black text-white">Borrow Book</a>
 </div>
 {% endblock content %}

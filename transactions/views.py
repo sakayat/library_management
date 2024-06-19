@@ -37,7 +37,23 @@ class DepositMoneyView(TransactionCreateMixin):
         return super().form_valid(form)
     
 
-
+class BorrowBookView(LoginRequiredMixin, View):
+    def get(self, request, book_id):
+        book = get_object_or_404(BooksModel, id=book_id)
+        account = self.request.user.account
+        account.balance -= book.borrowing_price
+        account.save()
+        
+        TransactionsModel.objects.create(
+            account = account,
+            amount = book.borrowing_price,
+            balance_after_purchase=account.balance,
+            transactions_type=2
+        )
+        
+        book.save()
+        
+        return redirect("home")
 
 
 
