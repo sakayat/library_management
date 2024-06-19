@@ -33,4 +33,3 @@ class DepositMoneyView(TransactionCreateMixin):
         account.balance += amount
         account.save(update_fields=["balance"])
         return super().form_valid(form)
-    
