@@ -1,10 +1,19 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="flex flex-col gap-3">
-    <img src="{{ book.image.url }}" alt="" class="w-44 h-44">
-    <h1>{{ book.title }}</h1>
-    <p>{{ book.description }}</p>
-    <p>Price: {{ book.borrowing_price }}</p>
-    <a href="{% url 'borrow_book' book.id %}" class="py-3 px-6 bg-black text-white">Borrow Book</a>
+{% extends "base.html" %} {% block content %}
+<div class="max-w-6xl mx-auto py-5">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <div class="w-full h-full">
+      <img src="{{ book.image.url }}" alt="" class="w-full" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <h1 class="text-3xl">{{ book.title }}</h1>
+      <p class="text-2xl text-justify">{{ book.description }}</p>
+      <p class="font-bold">Price: ${{ book.borrowing_price }}</p>
+      <a
+        href="{% url 'borrow_book' book.id %}"
+        class="py-3 px-6 bg-black text-white text-center"
+        >Borrow</a
+      >
+    </div>
+  </div>
 </div>
 {% endblock content %}
