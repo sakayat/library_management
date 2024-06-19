@@ -1,13 +1,11 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h1 class="text-3xl py-5">Welcome to Library Management</h1>
 {% for book in books %}
 <div class="flex flex-col gap-3">
-    <img src={{book.image.url}} alt="" srcset="" class="w-44 h-44">
-{{book.title}}
-{{book.description}}
-<p>Price: {{book.borrowing_price}}</p>
-<a href="" class="bg-black text-white text-center py-3">Add</a>
+  <a href="{% url 'book_details' book.id %}" class="">
+    <img src="{{book.image.url}}" alt="" class="w-44 h-44" />
+    {{book.title}}
+    <p>Price: {{book.borrowing_price}}</p>
+  </a>
 </div>
-{% endfor %}
-{% endblock content %}
+{% endfor %} {% endblock content %}

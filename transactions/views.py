@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, View
 from django.urls import reverse_lazy
 from .models import TransactionsModel
 from .forms import DepositFrom
+from books.models import BooksModel
+
 # Create your views here.
 class TransactionCreateMixin(LoginRequiredMixin, CreateView):
     model = TransactionsModel
@@ -33,3 +35,9 @@ class DepositMoneyView(TransactionCreateMixin):
         account.balance += amount
         account.save(update_fields=["balance"])
         return super().form_valid(form)
+    
+
+
+
+
+

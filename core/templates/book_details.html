@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex flex-col gap-3">
+    <img src="{{ book.image.url }}" alt="" class="w-44 h-44">
+    <h1>{{ book.title }}</h1>
+    <p>{{ book.description }}</p>
+    <p>Price: {{ book.borrowing_price }}</p>
+    <a href="" class="py-3 px-6 bg-black text-white">Borrow Book</a>
+</div>
+{% endblock content %}
