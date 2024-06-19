@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, View
 from django.urls import reverse_lazy
@@ -41,17 +42,20 @@ class BorrowBookView(LoginRequiredMixin, View):
     def get(self, request, book_id):
         book = get_object_or_404(BooksModel, id=book_id)
         account = self.request.user.account
+        if book.borrowing_price > account.balance:
+            messages.warning(self.request, "Insufficient balance to borrow the book")
+            return redirect("book_details", book.id)
         
         account.balance -= book.borrowing_price
         account.save()
         
         TransactionsModel.objects.create(
-            account = account,
-            amount = book.borrowing_price,
-            balance_after_purchase=account.balance,
-            transactions_type=2
+        account = account,
+        amount = book.borrowing_price,
+        balance_after_purchase=account.balance,
+        transactions_type=2
         )
-        
+
         book.save()
         
         return redirect("home")
