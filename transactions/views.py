@@ -46,6 +46,7 @@ class BorrowBookView(LoginRequiredMixin, View):
             messages.warning(self.request, "Insufficient balance to borrow the book")
             return redirect("book_details", book.id)
         
+        
         account.balance -= book.borrowing_price
         account.save()
         
@@ -53,9 +54,14 @@ class BorrowBookView(LoginRequiredMixin, View):
         account = account,
         amount = book.borrowing_price,
         balance_after_purchase=account.balance,
-        transactions_type=2
+        transactions_type=2,
+        book = book.title,
+        
         )
-
+        
+        if not book.is_borrow_book:
+            book.is_borrow_book = True
+        
         book.save()
         
         return redirect("home")
