@@ -24,7 +24,7 @@
           <td class="px-6 py-4">{{transaction.book}}</td>
           <td class="px-6 py-4">${{ transaction.amount|floatformat:2 }}</td>
           <td class="px-6 py-4">${{ transaction.balance_after_purchase|floatformat:2 }}</td>
-          <td class="px-6 py-4"><a href="http://">Return Book</a></td>
+          <td class="px-6 py-4"><a href="{% url 'return_book' transaction.id %}">Return Book</a></td>
         </tr>
         {% endfor %}
       </tbody>
