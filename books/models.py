@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from category.models import CategoryModel
 
 
@@ -19,10 +20,9 @@ class CommentModel(models.Model):
     comment = models.ForeignKey(
         BooksModel, on_delete=models.CASCADE, related_name="comments"
     )
-    name = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
-    body = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.comment.title)
