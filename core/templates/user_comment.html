@@ -1,0 +1,42 @@
+
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-lg lg:text-2xl font-bold text-gray-900">
+    Comment ({{book.comments.all|length}})
+  </h2>
+</div>
+<div class="comment-form">
+<form class="mb-6" method="post">
+  <div
+    class="py-2 px-4 mb-4 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+  >
+  {{form.body}}
+  </div>
+  <button
+    type="submit"
+    class="inline-flex items-center py-2.5 px-4 text-center text-white bg-gray-800"
+  >
+    Submit
+  </button>
+</form>
+</div>
+<div class="comment-list">
+{% for comment in book.comments.all %}
+<article class="p-6 text-base bg-white dark:bg-gray-900">
+  <footer class="flex justify-between items-center mb-2">
+    <div class="flex items-center">
+      <p
+        class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"
+      >
+        {{comment.name}}
+      </p>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        <time pubdate datetime="2022-02-08" title="February 8th, 2022"
+          >{{ comment.createdAt|date:"F d, Y" }}</time
+        >
+      </p>
+    </div>
+  </footer>
+  <p class="text-gray-500 dark:text-gray-400">{{comment.body}}</p>
+</article>
+{% endfor %}
+</div> 

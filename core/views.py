@@ -1,6 +1,8 @@
-from django.views.generic import TemplateView, DetailView
-from books.models import BooksModel, CategoryModel
-
+from django.views.generic import TemplateView, DetailView, CreateView, FormView
+from books.models import BooksModel
+from category.models import CategoryModel
+from books.forms import UserCommentFrom
+from django.views.generic.edit import FormMixin
 # Create your views here.
 class HomeTemplateView(TemplateView):
     model = BooksModel
@@ -18,11 +20,14 @@ class HomeTemplateView(TemplateView):
         context["categories"] = CategoryModel.objects.all()
         return context
     
-class BookDetailsView(DetailView):
+class BookDetailsView(FormMixin, DetailView):
     model = BooksModel
+    form_class = UserCommentFrom
     template_name = "book_details.html"
     pk_url_kwarg = "id"
     context_object_name = "book"
     
-
     
+
+
+
