@@ -3,6 +3,7 @@
     Comment ({{book.comments.all|length}})
   </h2>
 </div>
+{% if book.is_borrow_book %}
 <div class="comment-form">
   <form class="mb-6" method="post" novalidate>
     <div
@@ -20,6 +21,7 @@
     </button>
   </form>
 </div>
+{% endif %}
 <div class="comment-list flex flex-col gap-5">
   {% for comment in book.comments.all %}
   <article class="p-6 text-base bg-white dark:bg-gray-900">
